@@ -131,7 +131,7 @@ public:
 		{
 			candidates[i].theirCount = 0;
 		}
-		//redistribute votes to all candidates 
+		//redistribute votes to all candidates aenejse
 		for (int i = 0; i < candidates.size(); i++)
 		{
 			for (int k = 0; k < candidates.size(); k++)
