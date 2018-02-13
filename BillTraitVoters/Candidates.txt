@@ -1,12 +1,15 @@
-Gerry Adams
-SinnFein
-Luke Flanagan
-Independent
-Mick Wallace
-Wexford
-Joan Burton
-Labour
-1234
-1324
-2314
-4321
+A
+ 
+B
+ 
+C
+ 
+D
+ 
+E
+ 
+12345
+42135
+21354
+54321
+12345

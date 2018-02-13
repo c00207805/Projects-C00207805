@@ -109,7 +109,6 @@ public:
 		if (whatsLeft.size() ==1)
 		{
 			cout << whatsLeft[0].name << " wins!!";
-			cout << whatsLeft[0].theirCount;
 		}
 		else
 		{
@@ -131,64 +130,48 @@ public:
 		{
 			candidates[i].theirCount = 0;
 		}
-		//redistribute votes to all candidates aenejse
+		//now loop thru candidates
 		for (int i = 0; i < candidates.size(); i++)
 		{
-			for (int k = 0; k < candidates.size(); k++)
+			//if current inspected candidate != one that was just eliminated
+			if (candidates[i].name != theEliminatedCandidate.name)
 			{
-
-				if (candidates[i].name == theEliminatedCandidate.name)
+				//loop through their votes
+				for (int k = 0; k < candidates[i].theVotes.size(); k++)
 				{
-					if (theEliminatedCandidate.theVotes[k] == 1)
+					//if their is a 1 in their vote
+					if (candidates[i].theVotes[k] == 1)
 					{
-
+						//increment their vote count
+						candidates[i].theirCount++;
 					}
 				}
-				else if (candidates[i].theVotes.at(k) == 1)
+			}
+			//however if the current candidate is the newly eleiminated candidate
+			else if (candidates[i].name == theEliminatedCandidate.name)
+			{
+				//loop through their votes
+				for (int j = 0; j < theEliminatedCandidate.theVotes.size(); j++)
 				{
-					candidates[i].theirCount += 1;
+					//if they got a first preference
+					if (theEliminatedCandidate.theVotes[j] == 1)
+					{
+						//get the position of that preference
+						int thePos = j;
+						//loop through the ballotsVector at the position
+						for (int g = 0; g < theVoteBallots[j].length(); g++)
+						{
+							if (theVoteBallots[j].at(g) - '0' >1)
+							{
+								int votePos = g;
+								candidates[g].theirCount++;
+								break;
+							}
+						}
+					}
 				}
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		/*for (int i = 0; i < theVoteBallots.size(); i++)
-		{
-			//if they have a vote that is = round+1...eg round 0 they have a 1 pref, needs to be reallocated
-			//edit, if they have a vote of one,,,it needs to be redistributed
-			if (theEliminatedCandidate.theVotes[i] == 1)
-			{
-				//save its position (vertically)
-				int thePosition = i;
-				//then get that row of ballots to search for next smallest (horizontal)
-				string ballots = theVoteBallots[thePosition];
-				int lowestPossibleNext = theVoteBallots[thePosition].at(0);
-				int lowestPossiblePosition = 0;
-				for (int k = 0; k < theVoteBallots[thePosition].length(); k++)
-				{
-					if (theVoteBallots[thePosition].at(k) < lowestPossibleNext)
-					{
-						lowestPossibleNext = theVoteBallots[thePosition].at(k);
-						lowestPossiblePosition = k;
-					}
-
-				}
-				candidates[lowestPossiblePosition-1].theirCount++;
-			}
-
-		}*/
 	}
 	VoteCounter()
 	{

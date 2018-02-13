@@ -107,8 +107,44 @@ disqualified.push_back(lowestCandidate);
 candidates.erase(candidates.begin() + lowestPos);
 cout << "hello";
 
-lowestCandidate = calcLowest(candidates);*/
-class BallotPaper
+
+
+
+
+
+/*for (int i = 0; i < theVoteBallots.size(); i++)
+{
+//if they have a vote that is = round+1...eg round 0 they have a 1 pref, needs to be reallocated
+//edit, if they have a vote of one,,,it needs to be redistributed
+if (theEliminatedCandidate.theVotes[i] == 1)
+{
+//save its position (vertically)
+int thePosition = i;
+//then get that row of ballots to search for next smallest (horizontal)
+string ballots = theVoteBallots[thePosition];
+int lowestPossibleNext = theVoteBallots[thePosition].at(0);
+int lowestPossiblePosition = 0;
+for (int k = 0; k < theVoteBallots[thePosition].length(); k++)
+{
+if (theVoteBallots[thePosition].at(k) < lowestPossibleNext)
+{
+lowestPossibleNext = theVoteBallots[thePosition].at(k);
+lowestPossiblePosition = k;
+}
+
+}
+candidates[lowestPossiblePosition-1].theirCount++;
+}
+
+}*/
+
+
+
+
+
+
+//lowestCandidate = calcLowest(candidates);*/
+/*class BallotPaper
 {
 private:
 public:
@@ -127,4 +163,4 @@ public:
 		candidates = theCandidates;
 
 	}
-};
+};*/
