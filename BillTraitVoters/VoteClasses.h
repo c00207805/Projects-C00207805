@@ -1,3 +1,6 @@
+//VoteClasses.h
+//Author Bill Trait C00207805
+
 #pragma once
 #include "string"
 #include <iostream>
@@ -79,19 +82,18 @@ public:
 		for (int i = 0; i < size; i++)
 		{
 			//create a preference object and pass in the vote and the candidate
-			Preference thePreference = Preference(votes[i], candidates[i]);
+			//Preference thePreference = Preference(votes[i], candidates[i]);
 			//then push it on to a vector
-			preferenceVector.push_back(thePreference);
+			//preferenceVector.push_back(thePreference);
 		}
-		
 	}
 	void getPreference(int n)
 	{
-		for (int i = 0; i < size; i++)
+		for (int i = 0; i < votes.length(); i++)
 		{
-			if (preferenceVector[i].thePreference - '0' == n)
+			if (votes.at(i) - '0' == n)
 			{
-				cout << preferenceVector[i].theCandidate.getName();
+				cout << candidates[i].name;
 			}
 		}
 	}
@@ -201,22 +203,36 @@ public:
 		//minus one here because we want the last one as a winner BOYOOOOOOO
 		for (int omega = 0; omega < ballots.size()-1; omega++)
 		{
-			cout << "round " << round << endl;
-			lowestCandidate = calcLowest(candidates);
-			for (int i = 0; i < candidates.size(); i++)
+			cout << "Who is left?" << endl;
+			for (int e = 0; e < candidates.size(); e++)
 			{
-				if (candidates[i].name == lowestCandidate.name)
-				{
-					lowestPos = i;
-				}
+				cout << candidates[e].name << " ";
+				cout << candidates[e].theirCount << endl;
 			}
-			cout << lowestCandidate.name << " Knocked out! " << endl;
-			cout << "Their number of high preference votes: " << lowestCandidate.theirCount << endl;
-			//push the first DQ on to the vector
-			disqualified.push_back(lowestCandidate);
-			reDistribute(disqualified, lowestCandidate, round, theVoteBallots, candidates);
-			candidates.erase(candidates.begin() + lowestPos);
-			round++;
+			cout << "round " << round << endl;
+			if (candidates.size() == 1)
+			{
+				break;
+			}
+			else
+			{
+				lowestCandidate = calcLowest(candidates);
+				for (int i = 0; i < candidates.size(); i++)
+				{
+					if (candidates[i].name == lowestCandidate.name)
+					{
+						lowestPos = i;
+					}
+				}
+				cout << lowestCandidate.name << " Knocked out! " << endl;
+				cout << "Their number of high preference votes: " << lowestCandidate.theirCount << endl;
+				//push the first DQ on to the vector
+				disqualified.push_back(lowestCandidate);
+				reDistribute(disqualified, lowestCandidate, round, theVoteBallots, candidates);
+				candidates.erase(candidates.begin() + lowestPos);
+				round++;
+			}
+			
 		}
 		lowestCandidate = calcLowest(candidates);
 	}

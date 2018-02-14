@@ -1,5 +1,6 @@
 // BillTraitVoters.cpp : Defines the entry point for the console application.
 //
+//Author: Bill Trait C00207805
 
 #include "stdafx.h"
 #include <iostream>
